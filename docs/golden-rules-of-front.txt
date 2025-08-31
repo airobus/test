@@ -1,0 +1,72 @@
+前端开发黄金法则 (The Golden Rules of Frontend Development)
+
+核心理念：像组织一座城市一样组织你的代码
+一座好的城市，功能分区明确（商业区、住宅区），道路系统（数据流）高效，建筑模块化（预制板、标准化的门窗）。你的代码也应如此。
+
+三大核心原则
+1. 逻辑与视图分离 (Separate Logic from View)
+这是最重要的一条原则。永远不要将“如何工作”和“长什么样”混在一起。
+
+做什么：
+
+逻辑层 (Logic Layer): 负责状态管理、业务规则、API 请求等。这是应用的“大脑”。
+
+视图层 (View Layer): 负责接收数据并将其渲染成用户看到的 UI。这是应用的“外表”。
+
+怎么做：
+
+在 React 中，使用 自定义 Hooks (use...) 封装所有逻辑。
+
+在其他框架中，使用类似的服务 (Services)、Composition API (setup) 等机制。
+
+视图层应该是“哑巴组件 (Dumb Components)”，只通过 props 接收数据和回调函数。
+
+2. 万物皆可组合 (Compose Everything)
+像搭乐高积木一样构建你的应用。拒绝创建庞大、臃肿、无所不能的“巨无霸”组件。
+
+做什么：
+
+将 UI 拆分成最小的、单一职责的、可复用的单元。
+
+然后像拼图一样，将这些小单元组合成更大的功能块，最终构成整个页面。
+
+怎么做：
+
+看到设计稿上的一个按钮、一张卡片、一个输入框？它就应该是一个独立的组件。
+
+严格遵守 DRY (Don't Repeat Yourself) 原则。任何重复超过一次的 UI 或逻辑，都应该被抽象成独立的组件或函数。
+
+3. 数据驱动视图 (Let Data Drive the UI)
+UI 是数据的映射。你的工作是管理数据，而不是手动去修改界面。
+
+做什么：
+
+应用的任何形态，都应该由其当前的状态 (State) 唯一决定。公式： UI = f(State)
+
+怎么做：
+
+声明式编码： 你只需要“声明”在特定数据下，UI 应该是什么样子。
+
+避免直接操作 DOM： 永远不要写出 document.getElementById(...) 这样的命令式代码去手动更改界面。让框架根据数据的变化来自动更新 UI。
+
+4. 样式与主题统一 (Style & Theming Consistency)
+
+为保证跨项目一致的外观与极简维护成本，所有项目必须遵循统一的 UI 样式 SOP：
+
+- 采用语义化设计令牌（Design Tokens）驱动视觉：如 `--card`、`--input`、`--border`、`--ring` 等；避免硬编码颜色/透明度。
+- 原子组件“最小风格化”：不内置颜色/边框/焦点发光，样式由调用方或主题控制。
+- 全局焦点基线：禁止默认发光/阴影，按需在组件上显式开启；注意可访问性（:focus-visible）。
+- 容器与输入统一策略：容器用 `bg-card`，输入用 `bg-input`；需要完全一致时通过 tokens 在 `theme.css` 对齐。
+
+详细规范与可复制片段请参见：docs/ui-style-sop.md
+
+5. 执行规范与 ESLint（React Hooks 与 Image）
+
+为确保工程在可维护性与性能上的一致性，以下规则为强制执行：
+
+- 禁用原生 <img>，统一使用 Next.js `<Image />`，并补齐尺寸与 alt。
+- 遵守 React Hooks 规则：不在条件/循环中调用 Hook；`useEffect` 依赖完整；必要回调用 `useCallback` 封装。
+- 默认不全局关闭 `@next/next/no-img-element` 与 `react-hooks/exhaustive-deps`，仅在必要时局部豁免并注明理由。
+
+请务必阅读并遵循：
+- docs/react-hooks-and-image-standards.md

@@ -1,0 +1,10 @@
+新增block与多语言规范
+src/components/blocks/xxx/index.tsx
+src/types/pages/landing.d.ts
+src/i18n/pages/landing/en.json
+
+测试：
+ngrok http http://localhost:3000
+
+
+KIE_CALLBACK_URL=https://b34428f5f680.ngrok-free.app/api/kie/callback

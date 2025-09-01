@@ -1,97 +1,55 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import HappyUsers from "./happy-users";
-import HeroBg from "./bg";
-import { Hero as HeroType } from "@/types/blocks/hero";
-import Icon from "@/components/icon";
-import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+import { PromptForm } from "./PromptForm";
+import type { Hero as SectionType } from "@/types/blocks/hero";
 
-export default function Hero({ hero }: { hero: HeroType }) {
-  if (hero.disabled) {
-    return null;
-  }
+// 默认导出：Hero（Freepik 风格）
+// 说明：单张沉浸式背景 + 底部对齐内容，左对齐文本，聚焦输入。
+export default function Hero({ section }: { section: SectionType }) {
+  if (!section || section.disabled) return null;
 
-  const highlightText = hero.highlight_text;
-  let texts = null;
-  if (highlightText) {
-    texts = hero.title?.split(highlightText, 2);
-  }
+  // 临时背景图（可替换为从 section 读取）
+  const bgImage =
+    "https://cdn-front.freepik.com/images/ai/image-generator/cover/image-generator-header.webp";
 
   return (
-    <>
-      <HeroBg />
-      <section className="py-24">
-        <div className="container">
-          {hero.show_badge && (
-            <div className="flex items-center justify-center mb-8">
-              <img
-                src="/imgs/badges/phdaily.svg"
-                alt="phdaily"
-                className="h-10 object-cover"
-              />
+    <section className="relative w-full overflow-hidden bg-[--background]">
+      <div className="relative mx-auto my-0 min-h-[780px] w-full max-w-[1576px] lg:rounded-xl">
+        {/* 背景图片 */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={bgImage}
+            alt={section.title || "Abstract AI creative background"}
+            fill
+            priority
+            className="object-cover object-top"
+          />
+          {/* 深色渐变蒙版：增强对比 from-black/80 via-black/60 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-[--background]" />
+        </div>
+
+        {/* 内容容器：底部对齐 */}
+        <div className="relative z-10 flex h-[780px] flex-col justify-end gap-8 p-6 pb-16 sm:p-8 md:p-10 lg:p-11 xl:p-16">
+          <div className="flex flex-col items-start gap-8">
+            {/* 标题和描述：左对齐 */}
+            <div className="max-w-[676px] text-left text-white">
+              <h1 className="text-balance text-4xl font-bold leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)] lg:text-5xl xl:text-6xl">
+                {section.title || "AI Image Generator"}
+              </h1>
+              <p className="mt-4 max-w-2xl text-balance text-base font-normal leading-relaxed text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
+                {section.description ||
+                  "Try the ultimate Image Generator. Access the most advanced AI models and create AI images with just a prompt or an image reference."}
+              </p>
             </div>
-          )}
-          <div className="text-center">
-            {hero.announcement && (
-              <Link
-                href={hero.announcement.url as any}
-                className="mx-auto mb-3 inline-flex items-center gap-3 rounded-full border px-2 py-1 text-sm"
-              >
-                {hero.announcement.label && (
-                  <Badge>{hero.announcement.label}</Badge>
-                )}
-                {hero.announcement.title}
-              </Link>
-            )}
 
-            {texts && texts.length > 1 ? (
-              <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
-                {texts[0]}
-                <span className="bg-linear-to-r from-primary via-primary to-primary bg-clip-text text-transparent">
-                  {highlightText}
-                </span>
-                {texts[1]}
-              </h1>
-            ) : (
-              <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
-                {hero.title}
-              </h1>
-            )}
-
-            <p
-              className="m mx-auto max-w-3xl text-muted-foreground lg:text-xl"
-              dangerouslySetInnerHTML={{ __html: hero.description || "" }}
+            {/* 输入表单 */}
+            <PromptForm
+              placeholder={section.form?.placeholder}
+              trustText={section.form?.trust_text}
+              buttons={section.buttons}
             />
-            {hero.buttons && (
-              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                {hero.buttons.map((item, i) => {
-                  return (
-                    <Link
-                      key={i}
-                      href={item.url as any}
-                      target={item.target || ""}
-                      className="flex items-center"
-                    >
-                      <Button
-                        className="w-full"
-                        size="lg"
-                        variant={item.variant || "default"}
-                      >
-                        {item.icon && <Icon name={item.icon} className="" />}
-                        {item.title}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-            {hero.tip && (
-              <p className="mt-8 text-md text-muted-foreground">{hero.tip}</p>
-            )}
-            {hero.show_happy_users && <HappyUsers />}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

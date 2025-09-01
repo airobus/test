@@ -1,6 +1,6 @@
 {
   "template": "shipany-template-one",
-  "theme": "light",
+  "theme": "dark",
   "header": {
     "brand": {
       "title": "ShipAny",
@@ -53,33 +53,64 @@
     "show_locale": true
   },
   "hero": {
-    "title": "Ship Any AI Startups in hours, not days",
-    "highlight_text": "Ship Any",
-    "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups.<br/>Ship Fast with a variety of templates and components.",
-    "announcement": {
-      "label": "2025",
-      "title": "🎉 Happy New Year",
-      "url": "/pricing"
-    },
-    "tip": "🎁 50% off before 2025",
-    "buttons": [
+    "title": "Craft Your Vision with AI",
+    "description": "Turn your wildest ideas into stunning, high-quality visuals. Describe anything you can imagine, and watch it come to life.",
+    "floating_images": [
       {
-        "title": "Get Started",
-        "icon": "RiFlashlightFill",
-        "url": "/pricing",
-        "target": "_self",
-        "variant": "default"
+        "src": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=800&q=80",
+        "className": "top-[5%] left-[5%] w-32 h-auto md:w-40",
+        "duration": 5,
+        "yOffset": 25,
+        "delay": 0.2,
+        "alt": "AI generated art 1"
       },
       {
-        "title": "Read Document",
-        "icon": "RiBookOpenLine",
-        "url": "https://docs.shipany.ai",
-        "target": "_blank",
-        "variant": "outline"
+        "src": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=900&q=80",
+        "className": "bottom-[10%] right-[10%] w-40 h-auto md:w-52",
+        "duration": 7,
+        "yOffset": 30,
+        "delay": 0.5,
+        "alt": "AI generated art 2"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=700&q=80",
+        "className": "top-[20%] right-[15%] w-24 h-auto md:w-32",
+        "duration": 6,
+        "yOffset": 15,
+        "delay": 1,
+        "alt": "AI generated art 3"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=760&q=80",
+        "className": "bottom-[25%] left-[12%] w-28 h-auto md:w-36",
+        "duration": 8,
+        "yOffset": 20,
+        "delay": 0.8,
+        "alt": "AI generated art 4"
       }
     ],
-    "show_happy_users": true,
-    "show_badge": false
+    "form": {
+      "placeholder": "A cat in a spacesuit floating in a nebula, cinematic lighting...",
+      "trust_text": "✅ Licensed for commercial use."
+    },
+    "buttons": [
+      {
+        "title": "Styles",
+        "type": "style",
+        "icon": "Sparkles"
+      },
+      {
+        "title": "Generate",
+        "type": "submit",
+        "icon": "Send"
+      }
+    ],
+    "announcement": {
+      "label": "NEW",
+      "title": "🎨 Advanced AI Models Available",
+      "url": "/pricing"
+    },
+    "show_announcement": true
   },
   "branding": {
     "title": "ShipAny is built on the shoulders of giants",

@@ -8,16 +8,34 @@ export interface Announcement {
   target?: string;
 }
 
+export interface FloatingImage {
+  src: string;
+  className: string;
+  duration?: number;
+  yOffset?: number;
+  delay?: number;
+  alt?: string;
+}
+
+export interface HeroForm {
+  placeholder?: string;
+  trust_text?: string;
+}
+
+export interface HeroButton {
+  title: string;
+  type: "style" | "submit";
+  icon: string;
+}
+
 export interface Hero {
   name?: string;
   disabled?: boolean;
-  announcement?: Announcement;
   title?: string;
-  highlight_text?: string;
   description?: string;
-  buttons?: Button[];
-  image?: Image;
-  tip?: string;
-  show_happy_users?: boolean;
-  show_badge?: boolean;
+  floating_images?: FloatingImage[];
+  form?: HeroForm;
+  buttons?: HeroButton[];
+  announcement?: Announcement;
+  show_announcement?: boolean;
 }

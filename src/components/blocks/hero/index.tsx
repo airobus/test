@@ -12,8 +12,8 @@ export default function Hero({ section }: { section: SectionType }) {
     "https://cdn-front.freepik.com/images/ai/image-generator/cover/image-generator-header.webp";
 
   return (
-    <section className="relative w-full overflow-hidden bg-[--background]">
-      <div className="relative mx-auto my-0 min-h-[780px] w-full max-w-[1576px] lg:rounded-xl">
+    <section className="relative w-full overflow-hidden bg-[--background] px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5">
+      <div className="relative mx-auto my-0 min-h-[780px] w-full max-w-[1576px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/30 md:rounded-3xl">
         {/* 背景图片 */}
         <div className="absolute inset-0 z-0">
           <Image

@@ -9,7 +9,8 @@ export default function Hero({ section }: { section: SectionType }) {
 
   // 临时背景图（可替换为从 section 读取）
   const bgImage =
-    "https://cdn-front.freepik.com/images/ai/image-generator/cover/image-generator-header.webp";
+    // "https://cdn-front.freepik.com/images/ai/image-generator/cover/image-generator-header.webp";
+    "https://images.unsplash.com/photo-1755429562521-cb944ea054ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
   return (
     <section className="relative w-full overflow-hidden bg-[--background] px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5">
@@ -21,10 +22,10 @@ export default function Hero({ section }: { section: SectionType }) {
             alt={section.title || "Abstract AI creative background"}
             fill
             priority
-            className="object-cover object-top"
+            className="object-cover object-top brightness-110 contrast-105 saturate-110"
           />
-          {/* 深色渐变蒙版：增强对比 from-black/80 via-black/60 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-[--background]" />
+          {/* 渐变蒙版（更薄版本，中心更亮）：from-black/70 via-black/40 to-transparent */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-transparent" />
         </div>
 
         {/* 内容容器：底部对齐 */}
